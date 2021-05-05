@@ -10,6 +10,7 @@
 - routers目录 --- 路由模块
 - service目录 --- 实现整合
 - static目录 --- 静态文件接收存放
+- sql目录 --- sql表
 - app.js文件 --- 应用主入口
 - routers.js文件 --- 路由模块整合
 
