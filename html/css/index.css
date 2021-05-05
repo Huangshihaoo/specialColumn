@@ -1,0 +1,105 @@
+.main {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-image: url("../img/banner.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    padding-bottom: 70px;
+    margin-bottom: 50px;
+}
+
+.main .box h2 {
+    bottom: 50px;
+    font-size: 26px;
+}
+
+.main .box .btns {
+    bottom: 0;
+    background-color: #46a3fb;
+}
+
+/* 发现精彩 */
+
+.find {
+    padding: 0 100px;
+}
+
+.find h2 {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.find .row {
+    display: flex;
+    height: 286px;
+    margin-bottom: 40px;
+}
+
+.find .row .item {
+    position: relative;
+    flex: 33.33%;
+    margin: 0 20px;
+    padding: 30px 20px 20px;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px #acaaaa;
+    border-radius: 3px;
+}
+
+.find .row .item .head {
+    width: 50px;
+    height: 50px;
+}
+
+
+.find .row .item .name {
+    margin: 15px 0;
+    font-size: 20px;
+    text-align: center;
+}
+
+.find .row .item .info {
+    margin-bottom: 30px;
+}
+
+.find .row .item .info p {
+    height: 58px;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: -o-ellipsis-lastline;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    color: #6c757d;
+}
+
+.find .row .item .btn {
+    text-align: center;
+}
+
+.find .row .item .btn .btns, .load .btns{
+    border: 1px solid #46a3fb;
+    color: #46a3fb;
+}
+
+.find .row .item .btn .btns:hover ,.load .btns:hover{
+    border: 1px solid #fff;
+    background-color: #46a3fb;
+    color: #fff;
+}
+
+.load {
+    position: relative;
+    height: 40px;
+}
+
+.load .btns {
+    border: 2px solid #46a3fb;
+    text-align: center;
+    width: 120px;
+    height: 40px;
+    line-height: 1.7;
+}
+
