@@ -1,0 +1,578 @@
+{
+	"info": {
+		"_postman_id": "f976cd24-05c0-4a4c-80d3-107a71a866c5",
+		"name": "仿知乎专栏后台",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "用户注册",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "124521@qq.com",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "李栓蛋",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:4000/user/enroll",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"enroll"
+					]
+				},
+				"description": "用户注册"
+			},
+			"response": [
+				{
+					"name": "/user/enroll",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "1234@qq.com",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "铁蛋",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "127.0.0.1:4000/user/enroll",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"enroll"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "151"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 11 Apr 2021 12:08:10 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"msg\": \"success\",\n    \"data\": [\n        {\n            \"username\": \"铁蛋\",\n            \"password\": \"123456\",\n            \"id\": 10036,\n            \"createtime\": 1618142890132,\n            \"avatar\": \"\",\n            \"email\": \"1234@qq.com\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "用户登录",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "124521@qq.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:4000/user/login",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "用户自动登录",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:4000/user/getuser",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"getuser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改用户资料",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "李栓蛋1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234567",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "123@qq.com",
+							"type": "text"
+						},
+						{
+							"key": "avatar",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "descpt",
+							"value": "一段描述",
+							"type": "text"
+						},
+						{
+							"key": "colum",
+							"value": "栓蛋的专栏",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:4000/user/coveruser?id=10097",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"coveruser"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "10097"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取专栏列表",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:4000/column?current=1&size=5",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"column"
+					],
+					"query": [
+						{
+							"key": "current",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取专栏",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:4000/column/col/1619184175454",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"column",
+						"col",
+						"1619184175454"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改专栏",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "修改专栏名",
+							"type": "text"
+						},
+						{
+							"key": "descpt",
+							"value": "滴答滴",
+							"type": "text"
+						},
+						{
+							"key": "avatar",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:4000/column/12356",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"column",
+						"12356"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "创建文章",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "我知道搞去哪了",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "文章内容无关紧要",
+							"type": "text"
+						},
+						{
+							"key": "url",
+							"value": "image/1.jpg",
+							"type": "text"
+						},
+						{
+							"key": "columnid",
+							"value": "1620215277305",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "10097",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:4000/article/create",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"article",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取文章",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:4000/article/10050",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"article",
+						"10050"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改文章",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "搞去这",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "滴答滴滴滴答",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:4000/article/10050",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"article",
+						"10050"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除文章",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:4000/article/10012",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"article",
+						"10012"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "图片上传",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "multipart/form-data",
+						"warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman."
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/E:/picture/552b1999aa4d5a2e75352fa2f6e93d51.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:4000/file/updata",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"file",
+						"updata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "退出登录",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:4000/user/outlogin",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"outlogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取专栏文章列表",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "127.0.0.1:4000/column/articl?id=1619184175454&current=1&size=5",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"column",
+						"articl"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1619184175454"
+						},
+						{
+							"key": "current",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
