@@ -9,6 +9,7 @@ import Writing  from './combination/Create.vue';
 import Article from './combination/article.vue';
 import Edit from './combination/Edit.vue';
 import Alter from './combination/alter.vue';
+import Err from './containers/404.vue'
 
 Vue.use(VueRouter);
 
@@ -61,6 +62,10 @@ export default new VueRouter({
         {
             path:'/alter/:id',
             component: Alter
+        },
+        {
+            path:'*',
+            component: Err
         }
     ]
 })

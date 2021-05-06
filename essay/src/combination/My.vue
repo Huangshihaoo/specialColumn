@@ -73,7 +73,7 @@ export default {
             if (!this.$store.state.userData.id) {
                 this.$router.push(`/login`);
             }
-        }, 100);
+        }, 500);
         // 搞好信息
         this.articleInfo.id = this.$route.params.id;
         // 获取专栏
