@@ -1,14 +1,17 @@
 const koa = require('koa');
 const static = require('koa-static');
 const koaBoay = require('koa-body');
+var cors = require('koa2-cors');
 const routers = require('./routers');
 
 let app = new koa();
 
+app.use(cors());
+
 app.use(koaBoay({
     multipart: true,
     formidable: {
-        maxFieldsSize: 2 * 1024 * 1024,
+        maxFieldsSize: 10 * 1024 * 1024,
     }
 }));
 
