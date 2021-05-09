@@ -15,7 +15,7 @@
                 <span
                     class="center"
                     v-else
-                    :style="{ 'background-image': `url(${user.avatar})` }"
+                    :style="{ 'background': `center center / 100% 100% no-repeat url(http://localhost:4000/${user.avatar})` }"
                 >
                     上传头像
                 </span>
@@ -60,7 +60,7 @@
                 <span
                     class="center"
                     v-else
-                    :style="{ 'background-image': `url(${column.avatar})` }"
+                    :style="{'background': `center center / 100% 100% no-repeat url(http://localhost:4000/${column.avatar})` }"
                 >
                     上传专栏图
                 </span>

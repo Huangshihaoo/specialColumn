@@ -11,7 +11,7 @@ Vue.use(subimg);
 
 Vue.use(toastRegistry);
 
-Vue.use(Vuerify,{});
+Vue.use(Vuerify,null);
 Vue.use(VuerifyDirective);
 
 Vue.config.productionTip = false;

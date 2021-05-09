@@ -5,7 +5,7 @@
                 <img src="" v-if="!columnInfo.avatar" alt="" />
                 <img
                     v-else
-                    :src="`http://localhost:8080/${columnInfo.avatar}`"
+                    :src="`http://localhost:4000/${columnInfo.avatar}`"
                     alt=""
                 />
             </div>
@@ -29,7 +29,7 @@
                     <img v-if="!item.image" src="" alt="" />
                     <img
                         v-else
-                        :src="`http://localhost:8080/${item.image}`"
+                        :src="`http://localhost:4000/${item.image}`"
                         alt=""
                     />
                 </div>
@@ -69,11 +69,6 @@ export default {
     },
     created() {
         // 是否为登录状态
-        setTimeout(() => {
-            if (!this.$store.state.userData.id) {
-                this.$router.push(`/login`);
-            }
-        }, 500);
         // 搞好信息
         this.articleInfo.id = this.$route.params.id;
         // 获取专栏
@@ -86,7 +81,6 @@ export default {
         },
         // 获取专栏文章列表
         async getArticleList(info) {
-            console.log(info);
             let arr = await getColumnArticleList(
                 info.id,
                 info.current,

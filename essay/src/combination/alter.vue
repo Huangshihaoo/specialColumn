@@ -7,7 +7,7 @@
                 <div
                     class="update"
                     :style="{
-                        'background-image': `url(http://localhost:8080/${essay.image})`,
+                        'background': `center center / 100% 100% no-repeat url(http://localhost:4000/${essay.image})`,
                     }"
                 >
                     <span class="center"> 上传封面 </span>
