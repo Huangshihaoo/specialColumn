@@ -49,7 +49,9 @@ class User {
     async login(user) {
         let [rows] = await this.connection.execute(`SELECT * FROM users WHERE email = ? AND password = ?;`, [user.email, user.password]);
         // 去掉密码
-        delete rows[0].password
+        if(rows[0].password) {
+            delete rows[0].password
+        }
         return rows;
     }
 

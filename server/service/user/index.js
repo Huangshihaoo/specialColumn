@@ -8,7 +8,6 @@ const Column = require('../../model/column');
 
 const controller = require('../../controller/controller');
 
-let token;
 
 module.exports = {
     // 注册
@@ -32,10 +31,11 @@ module.exports = {
             // 添加用户返回user数据
             let user = await User.addUser(userData);
             // 保存token
-            token = jwt.sign({
+            let token = jwt.sign({
                 exp: Math.floor(Date.now() / 1000 + (60 * 60)),
                 data: user
             }, 'mimi');
+            user.token = token
             // 成功放回
             controller(ctx, 1, user);
 
@@ -57,10 +57,11 @@ module.exports = {
             controller(ctx, 0, {});
         } else {
             // 登录成功保存token
-            token = jwt.sign({
+            let token = jwt.sign({
                 exp: Math.floor(Date.now() / 1000 + (60 * 60)),
                 data: arr[0]
             }, 'mimi');
+            arr[0].token = token;
             // 成功
             controller(ctx, 1, arr);
         }
@@ -68,21 +69,22 @@ module.exports = {
     // 获取用户
     async getuser(ctx) {
         try {
-            let pToken = jwt.verify(token, 'mimi');
+            let pToken = jwt.verify(ctx.query.token, 'mimi');
+
             // 有就是没有过期，else就过期了
             if (pToken) {
                 controller(ctx, 1, pToken.data);
             } else {
-                // 失败放回
                 controller(ctx, 0, {});
+                // 失败放回
             }
         } catch (error) {
             controller(ctx, 0, {});
         }
+
     },
     // 更新用户
     async coveruser(ctx) {
-        token = null
         // 路径上的参数id
         let userid = ctx.query.id;
         // 需要更新的数据
@@ -95,13 +97,13 @@ module.exports = {
         }
         // 更新后的数据
         let userData = await User.updata(userid, upData);
-
         userData.colum = await Column.getById(userData.columnid);
 
-        token = jwt.sign({
+        let token = jwt.sign({
             exp: Math.floor(Date.now() / 1000 + (60 * 60)),
             data: userData
         }, 'mimi');
+        userData.token = token;
         // 有userData 就是成功
         if (userData) {
             controller(ctx, 1, userData);
@@ -111,7 +113,6 @@ module.exports = {
         }
     },
     outLogin(ctx) {
-        token = null
-        controller(ctx, 1, { colum: {} });
+        controller(ctx, 1, { colum: {}, token: 'huoqile' });
     }
 }
