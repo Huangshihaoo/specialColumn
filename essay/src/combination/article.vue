@@ -14,7 +14,7 @@
         <div class="img">
             <img
                 class="cover"
-                :src="`http://localhost:4000/${article.image}`"
+                :src="`http://103.133.176.190:4000/${article.image}`"
                 alt=""
             />
         </div>
@@ -22,7 +22,7 @@
         <div class="author">
             <div class="head">
                 <img
-                    :src="`http://localhost:4000/${article.author.avatar}`"
+                    :src="`http://103.133.176.190:4000/${article.author.avatar}`"
                     alt=""
                 />
             </div>

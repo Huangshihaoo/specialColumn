@@ -5,7 +5,7 @@
                 <img src="" v-if="!columnInfo.avatar" alt="" />
                 <img
                     v-else
-                    :src="`http://localhost:4000/${columnInfo.avatar}`"
+                    :src="`http://103.133.176.190:4000/${columnInfo.avatar}`"
                     alt=""
                 />
             </div>
@@ -15,33 +15,35 @@
             </div>
         </div>
 
-        <div
-            class="article"
-            v-for="(item, index) in columnInfo.list.list"
-            :key="index"
-        >
-            <h2>
-                <a :href="`/articl/${item._id}`">{{ item.title }}</a>
-            </h2>
+        <div v-if="show">
+            <div
+                class="article"
+                v-for="(item, index) in columnInfo.list.list"
+                :key="index"
+            >
+                <h2>
+                    <a :href="`/articl/${item._id}`">{{ item.title }}</a>
+                </h2>
 
-            <div class="content">
-                <div class="image">
-                    <img v-if="!item.image" src="" alt="" />
-                    <img
-                        v-else
-                        :src="`http://localhost:4000/${item.image}`"
-                        alt=""
-                    />
+                <div class="content">
+                    <div class="image">
+                        <img v-if="!item.image" src="" alt="" />
+                        <img
+                            v-else
+                            :src="`http://103.133.176.190:4000/${item.image}`"
+                            alt=""
+                        />
+                    </div>
+
+                    <p>{{ item.content }}</p>
                 </div>
-
-                <p>{{ item.content }}</p>
+                <div class="time">{{ new Date(Number(item.createTime)) }}</div>
             </div>
-            <div class="time">{{ new Date(Number(item.createTime)) }}</div>
         </div>
         <a
             href="javascript:;"
             @click="getArticleList(articleInfo)"
-            v-if="articleInfo.current <= articleInfo.maxPage"
+            v-if="articleInfo.current <= articleInfo.maxPage && articleInfo.maxPage != 0"
             class="btns center"
             >加载更多</a
         >
@@ -53,6 +55,7 @@ import { getColumnInfo, getColumnArticleList } from "../api";
 export default {
     data() {
         return {
+            show: false,
             columnInfo: {
                 author: "",
                 avatar: "",
@@ -61,9 +64,9 @@ export default {
             },
             articleInfo: {
                 size: 5,
-                maxPage: 2,
+                maxPage: 0,
                 id: "",
-                current: 1,
+                current: 0,
             },
         };
     },
@@ -77,7 +80,14 @@ export default {
     methods: {
         async getColumn() {
             let result = await getColumnInfo(this.$route.params.id);
-            this.columnInfo = result.data.data;
+            if(result.data.code === 0) {
+                this.show = true
+                this.columnInfo = result.data.data;
+
+                this.articleInfo.current = result.data.data.list.current+1
+                this.articleInfo.maxPage = result.data.data.list.maxPage
+            }
+            
         },
         // 获取专栏文章列表
         async getArticleList(info) {

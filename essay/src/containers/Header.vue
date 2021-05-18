@@ -2,7 +2,7 @@
     <header class="header">
         <div class="box">
             <a href="/index" class="logo">
-                <h1>杂文</h1>
+                <h1>专栏</h1>
             </a>
             <div class="login" v-if="!this.$store.state.userData.username">
                 <router-link to="/login" class="btns">登录</router-link>
@@ -48,7 +48,9 @@ export default {
             this.$router.push(`/edit`);
         },
         outLo() {
-            this.$store.dispatch("outLogin");
+            this.isShow = !this.isShow;
+            let token = this.$cookies.get("userToken");
+            this.$store.dispatch("outLogin",token);
             this.$router.push(`/login`);
         },
     },

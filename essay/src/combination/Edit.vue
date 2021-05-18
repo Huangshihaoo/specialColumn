@@ -15,7 +15,7 @@
                 <span
                     class="center"
                     v-else
-                    :style="{ 'background': `center center / 100% 100% no-repeat url(http://localhost:4000/${user.avatar})` }"
+                    :style="{ 'background': `center center / 100% 100% no-repeat url(http://103.133.176.190:4000/${user.avatar})` }"
                 >
                     上传头像
                 </span>
@@ -60,7 +60,7 @@
                 <span
                     class="center"
                     v-else
-                    :style="{'background': `center center / 100% 100% no-repeat url(http://localhost:4000/${column.avatar})` }"
+                    :style="{'background': `center center / 100% 100% no-repeat url(http://103.133.176.190:4000/${column.avatar})` }"
                 >
                     上传专栏图
                 </span>
@@ -139,6 +139,7 @@ export default {
     },
     created() {
         this.$store.watch((state) => {
+            this.userId = state.userData.id
             // 获取用户及专栏信息
             this.user.avatar = state.userData.avatar;
             this.user.username = state.userData.username;
@@ -170,10 +171,12 @@ export default {
                 this.$toast("没有信息更改", 3000);
                 return;
             }
+
             this.$store.dispatch("updateInfo", {
                 id: this.userId,
                 user: this.user,
             });
+            
             this.$store.watch(() => {
                 this.$toast("更改完成", 3000);
                 this.$router.push("/edit");

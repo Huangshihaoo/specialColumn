@@ -17,7 +17,10 @@
                         :key="index"
                     >
                         <div class="head">
-                            <img :src="`http://localhost:4000/${item.avatar}`" alt="" />
+                            <img
+                                :src="`http://103.133.176.190:4000/${item.avatar}`"
+                                alt=""
+                            />
                         </div>
                         <div class="name">
                             <span>{{ item.author }}</span>
@@ -26,7 +29,10 @@
                             <p>{{ item.descpt }}</p>
                         </div>
                         <div class="btn">
-                            <a :href="`/colum/${item.columnid}`" class="btns"
+                            <a
+                                @click="toColumn(`/colum/${item.columnid}`)"
+                                href="javascript:;"
+                                class="btns"
                                 >进入主页</a
                             >
                         </div>
@@ -67,6 +73,7 @@ export default {
             this.columnCurrent = state.columnCurrentList;
             this.columnSum = state.columnListSize;
         });
+
         this.$store.watch(() => {
             if (this.$store.state.userData.username) {
                 this.goto = "/writing";
@@ -74,6 +81,8 @@ export default {
                 this.goto = "/login";
             }
         });
+
+      
     },
     methods: {
         getColumnList() {
@@ -83,6 +92,9 @@ export default {
         },
         load() {
             this.$parent.getColumnList();
+        },
+        toColumn(url) {
+            this.$router.push(url);
         },
     },
 };

@@ -6,6 +6,10 @@ import VuerifyDirective from 'v-vuerify-next'; // Vue2.0
 import toastRegistry from './utils/toast/index';
 import store from './store';
 import subimg from './utils/imgsub';
+import VueCookies from 'vue-cookies'
+
+Vue.use(VueCookies);
+Vue.$cookies.config('3d');
 
 Vue.use(subimg);
 

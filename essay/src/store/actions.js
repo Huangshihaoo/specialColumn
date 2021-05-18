@@ -22,6 +22,7 @@ export default {
         const result = await enroll(payload);
         if (result.data.code === 0) {
             const userData = result.data.data
+            
             context.commit(RECEPTION_USER_DATA, { userData })
         }
     },
@@ -37,12 +38,11 @@ export default {
     async login(context, payload) {
         const result = await login(payload);
         if (result.data.code === 0) {
-            // console.log( result.data.data);
             context.commit(RECEPTION_LOGIN, result.data.data[0])
         }
     },
-    async autoLogin(context) {
-        const result = await autoLogin();
+    async autoLogin(context, payload) {
+        const result = await autoLogin(payload);
         if (result.data.code === 0) {
             context.commit(RECEPTION_LOGIN, result.data.data)
         }
@@ -56,8 +56,8 @@ export default {
     async updateColum(context, payload) {
         await updateColumn(payload.id, payload.column)
     },
-    async outLogin(context) {
-        const result = await outLogi();
+    async outLogin(context,payload) {
+        const result = await outLogi(payload);
         if (result.data.code === 0) {
             context.commit(RECEPTION_RESET, result.data.data);
         }

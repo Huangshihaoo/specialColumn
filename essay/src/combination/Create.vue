@@ -5,7 +5,7 @@
             <div class="add">
                 <div
                     class="update"
- :style="{ 'background': `center center / 100% 100% no-repeat url(http://localhost:4000/${img})` }"
+ :style="{ 'background': `center center / 100% 100% no-repeat url(http://103.133.176.190:4000/${img})` }"
                 >
                     <span class="center"> 上传封面 </span>
                     <input

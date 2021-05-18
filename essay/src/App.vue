@@ -1,41 +1,48 @@
 <template>
-  <div id="app">
-    <Header/>
-     <router-view />
-   <Footer/>
-  </div>
+    <div id="app">
+        <Header />
+        <router-view />
+        <Footer />
+    </div>
 </template>
 
 <script>
-import Header from './containers/Header';
-import Footer from './components/Footer.vue';
+import Header from "./containers/Header";
+import Footer from "./components/Footer.vue";
 
 export default {
-  name: 'App',
-  components: {
-    Header,
-    Footer
-  },
-   created() {
-       this.$store.watch((state) => {
-            this.current = state.columnCurrentList 
-        })
-        this.getColumnList()
-         if(!this.$store.state.userData.username) {
-             this.$store.dispatch('autoLogin');
+    name: "App",
+    components: {
+        Header,
+        Footer,
+    },
+    created() {
+        this.$store.watch((state) => {
+            this.current = state.columnCurrentList;
+        });
+        this.getColumnList();
+        this.$store.watch((state) => {
+            if (state.userData.token) {
+                this.$cookies.set("userToken", state.userData.token, "1d");
+            }
+        });
+
+        if (this.$cookies.get("userToken")) {
+            let token = this.$cookies.get("userToken");
+            this.$store.dispatch("autoLogin", token);
         }
-  },
-  methods: {
-      getColumnList() {
-          this.$store.dispatch('getColumnList',this.current);
-           this.$store.state.columnCurrentList++
-      }
-  },
-}
+    },
+    methods: {
+        getColumnList() {
+            this.$store.dispatch("getColumnList", this.current);
+            this.$store.state.columnCurrentList++;
+        },
+    },
+};
 </script>
 
 <style>
-@import url('./assets/reset.css');
+@import url("./assets/reset.css");
 .btns {
     display: inline-block;
     height: 30px;
@@ -60,7 +67,6 @@ body {
     width: 960px;
     margin: 0 auto;
 }
-
 
 .update {
     position: relative;
